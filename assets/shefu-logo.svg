@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Shefu Divination Logo</title>
+  <desc id="desc">A glowing bagua seal logo for the Shefu Divination project.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#17313a"/>
+      <stop offset="0.58" stop-color="#090d12"/>
+      <stop offset="1" stop-color="#030507"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="24" y1="26" x2="224" y2="230" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff4b8"/>
+      <stop offset="0.42" stop-color="#d7a945"/>
+      <stop offset="1" stop-color="#7b4b18"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="58" y1="36" x2="204" y2="218" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#37f5ff"/>
+      <stop offset="1" stop-color="#0c6e7f"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="48" fill="url(#bg)"/>
+  <circle cx="128" cy="128" r="86" fill="none" stroke="url(#gold)" stroke-width="4" opacity="0.9"/>
+  <circle cx="128" cy="128" r="61" fill="none" stroke="#2de6ef" stroke-width="1.5" opacity="0.45"/>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-width="8" filter="url(#glow)">
+    <path d="M84 71h37M84 92h37M84 113h16M111 113h10"/>
+    <path d="M136 71h37M136 92h15M162 92h11M136 113h37"/>
+    <path d="M84 143h16M111 143h10M84 164h37M84 185h37"/>
+    <path d="M136 143h37M136 164h15M162 164h11M136 185h37"/>
+  </g>
+  <path d="M128 47c24 26 25 52 0 80-25 28-24 54 0 82" fill="none" stroke="url(#cyan)" stroke-width="10" stroke-linecap="round" opacity="0.72"/>
+  <text x="128" y="139" text-anchor="middle" font-family="Georgia, 'Noto Serif SC', serif" font-size="48" font-weight="700" fill="#fff0b0" filter="url(#glow)">覆</text>
+  <text x="128" y="219" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" letter-spacing="3" fill="#37f5ff">SHEFU</text>
+</svg>
+
