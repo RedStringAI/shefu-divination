@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 <img src="assets/shefu-logo.svg" alt="Shefu Divination logo" width="104">
 
@@ -23,7 +23,7 @@
 <details open>
 <summary>推荐的 OpenAI-compatible 多模型网关</summary>
 
-[![FluxToken - OpenAI-compatible 多模型网关](assets/fluxtoken-banner.svg)](https://fluxtoken.ai)
+[![FluxToken - OpenAI-compatible 多模型网关](assets/fluxtoken-banner.png)](https://fluxtoken.ai)
 
 <table>
 <tr>
@@ -106,7 +106,7 @@ npm run build
 .
 ├── index.html
 ├── assets/
-│   ├── fluxtoken-banner.svg
+│   ├── fluxtoken-banner.png
 │   └── shefu-logo.svg
 ├── css/
 │   └── style.css

@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 <img src="assets/shefu-logo.svg" alt="Shefu Divination logo" width="104">
 
@@ -23,7 +23,7 @@ English | [中文](README.md) | [日本語](README_JA.md) | [Deutsch](README_DE.
 <details open>
 <summary>Recommended OpenAI-compatible multi-model gateway</summary>
 
-[![FluxToken - OpenAI-compatible multi-model gateway](assets/fluxtoken-banner.svg)](https://fluxtoken.ai)
+[![FluxToken - OpenAI-compatible multi-model gateway](assets/fluxtoken-banner.png)](https://fluxtoken.ai)
 
 Shefu Divination is provider-neutral. Its optional AI guessing feature works with any OpenAI-compatible endpoint. [FluxToken](https://fluxtoken.ai) is a convenient multi-model gateway for Claude, GPT, DeepSeek, and other mainstream models, with unified API keys, balance management, usage logs, and routing.
 

@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 <img src="assets/shefu-logo.svg" alt="Shefu Divination logo" width="104">
 
@@ -23,7 +23,7 @@
 <details open>
 <summary>Recommended OpenAI-compatible multi-model gateway</summary>
 
-[![FluxToken - OpenAI-compatible multi-model gateway](assets/fluxtoken-banner.svg)](https://fluxtoken.ai)
+[![FluxToken - OpenAI-compatible multi-model gateway](assets/fluxtoken-banner.png)](https://fluxtoken.ai)
 
 Shefu Divination は特定のモデル提供元に依存しません。AI 推測機能は OpenAI-compatible endpoint であれば利用できます。[FluxToken](https://fluxtoken.ai) は Claude / GPT / DeepSeek などをまとめて扱えるマルチモデル API ゲートウェイです。
 
