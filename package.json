@@ -1,0 +1,21 @@
+{
+  "name": "shefu-divination",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "A cyber-oriental Shefu divination web app with local backtesting and optional OpenAI-compatible AI guessing.",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs"
+  },
+  "keywords": [
+    "shefu",
+    "divination",
+    "iching",
+    "bagua",
+    "openai-compatible",
+    "static-site"
+  ],
+  "license": "MIT"
+}
+

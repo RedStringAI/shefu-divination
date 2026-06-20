@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local assistant/editor state
+.claude/
+.cursor/
+.vscode/
+
+# Logs and caches
+*.log
+.DS_Store
+Thumbs.db
+.cache/
+dist/
+
+# Local test/output data
+*.tmp
+*.bak
+

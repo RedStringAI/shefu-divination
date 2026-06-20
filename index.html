@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>射覆 · 玄机推演</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;900&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 背景层:水墨 + 赛博网格 + 粒子 -->
+  <div class="bg-layer">
+    <canvas id="particles"></canvas>
+    <div class="grid-overlay"></div>
+    <div class="ink-blot ink-1"></div>
+    <div class="ink-blot ink-2"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <!-- 八卦旋转环(装饰) -->
+  <div class="bagua-ring" id="baguaRing">
+    <span>☰</span><span>☱</span><span>☲</span><span>☳</span>
+    <span>☴</span><span>☵</span><span>☶</span><span>☷</span>
+  </div>
+
+  <main class="container">
+    <header class="hero">
+      <h1 class="title" data-text="射覆">射覆</h1>
+      <p class="subtitle">SHÈ&nbsp;FÙ&nbsp;·&nbsp;玄机推演</p>
+      <p class="tagline">以易经卦象,推演覆藏之物 — 咬定一物 · 形色质性互参</p>
+    </header>
+
+    <!-- 三卦合参输入 -->
+    <section class="panel qigua-panel">
+      <p class="hint">三项皆为<b>选填</b> — 填几项就起几卦,多卦合参交叉印证、收敛到一物。短内容平台射覆题常同时给时间+随机数+随机字,全填命中更准。</p>
+
+      <div class="field">
+        <label class="field-label">① 天时<span class="opt">藏物之时,题目给则填题目时间</span></label>
+        <div class="time-inputs">
+          <input type="date" id="dateInput">
+          <input type="time" id="timeInput">
+          <button class="now-btn" id="nowBtn">此刻</button>
+          <button class="clear-field" id="clearTime" title="清空,本项不参与">✕</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">② 报数<span class="opt">题目给的随机数,如 1118</span></label>
+        <input type="number" id="numSingle" class="text-input" placeholder="例:1118" min="1">
+        <details class="adv-toggle">
+          <summary>分别报三数(高级)</summary>
+          <div class="num-inputs">
+            <input type="number" id="num1" placeholder="天" min="1">
+            <input type="number" id="num2" placeholder="地" min="1">
+            <input type="number" id="num3" placeholder="人" min="1">
+          </div>
+        </details>
+      </div>
+
+      <div class="field">
+        <label class="field-label">③ 报字<span class="opt">题目给的随机字,如 面(按真实笔画)</span></label>
+        <input type="text" id="textInput" class="text-input" placeholder="例:面 / 或一句话">
+      </div>
+
+      <div class="field">
+        <label class="field-label">④ 题目提示<span class="opt">题目给出的线索,助 AI 锲合(选填)</span></label>
+        <input type="text" id="hintInput" class="text-input" placeholder="例:在客厅 / 是吃的 / 女生常用 / 金属的">
+      </div>
+
+      <button class="cast-btn" id="castAll">
+        <span class="btn-glow"></span>合参推演
+      </button>
+
+      <!-- AI 设置 -->
+      <details class="ai-settings" id="aiSettings">
+        <summary>⚙ AI 猜物设置<span class="ai-status" id="aiStatus"></span></summary>
+        <p class="hint" style="margin-top:.8rem">易学引擎只算物理属性,具体"是哪件物"交给 AI 推断 — 物品空间无限,不再受固定词库局限。</p>
+        <label class="ai-field"><span>API Key</span>
+          <input type="password" id="aiKey" class="text-input" placeholder="sk-..." autocomplete="off"></label>
+        <label class="ai-field"><span>接口地址</span>
+          <input type="text" id="aiBase" class="text-input" placeholder="https://api.deepseek.com(可填你的中转站)"></label>
+        <p class="ai-promo">可选填 <a href="https://fluxtoken.ai/" target="_blank" rel="noopener" class="promo-link">FluxToken</a> 接口地址 — 一个 Key 连接 DeepSeek / Claude / GPT 等多种模型。</p>
+        <label class="ai-field"><span>模型</span>
+          <input type="text" id="aiModel" class="text-input" placeholder="deepseek-chat"></label>
+        <label class="ai-toggle"><input type="checkbox" id="aiEnabled"> 启用 AI 猜物</label>
+        <button class="ghost-btn" id="aiSave">保存设置</button>
+        <p class="ai-warn">⚠ Key 仅存于本机浏览器,不写入分发文件。录屏/公开演示前请隐藏本框。建议用专属中转站 Key 并定期轮换。</p>
+      </details>
+    </section>
+
+    <!-- 占卜动画 -->
+    <div class="casting-overlay" id="castingOverlay">
+      <div class="casting-coin">☯</div>
+      <p class="casting-text">布卦推演中…</p>
+    </div>
+
+    <!-- 结果区 -->
+    <section class="panel result-panel" id="resultPanel">
+      <!-- 卦象展示(合参时多组) -->
+      <div class="gua-stack" id="guaStack"></div>
+
+      <!-- 神秘结论 -->
+      <div class="verdict-box">
+        <div class="verdict-jixiong" id="jixiong"></div>
+        <p class="verdict-main" id="verdictMain"></p>
+        <div class="attr-grid" id="attrGrid"></div>
+      </div>
+
+      <!-- 可展开推理 -->
+      <button class="reasoning-toggle" id="reasoningToggle">
+        ▸ 展开玄机推理过程
+      </button>
+      <div class="reasoning-content" id="reasoningContent"></div>
+
+      <!-- 回测记录 -->
+      <div class="backtest-record">
+        <p class="bt-hint">覆者揭晓真物后,记录于此 — 用于回测优化:</p>
+        <div class="bt-input-row">
+          <input type="text" id="actualInput" placeholder="真实物品(如:口红 / 钥匙 / 苹果)">
+          <select id="hitSelect">
+            <option value="">命中?</option>
+            <option value="hit">✓ 命中</option>
+            <option value="partial">~ 部分中</option>
+            <option value="miss">✗ 未中</option>
+          </select>
+          <button id="saveRecord">存档</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 回测台 -->
+    <section class="panel backtest-panel" id="backtestPanel">
+      <div class="bt-header">
+        <h2>回测台 · 命中统计</h2>
+        <div class="bt-stats" id="btStats"></div>
+      </div>
+      <div class="bt-list" id="btList"></div>
+      <div class="bt-actions">
+        <button id="exportBtn" class="ghost-btn">导出记录(JSON)</button>
+        <button id="clearBtn" class="ghost-btn danger">清空记录</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>射覆推演基于梅花易数 · 卦象类象 · 五行体用生克</p>
+    <p class="disclaimer">玄学框架不可证伪,结果仅供娱乐与文化体验 · 请以回测命中率检验</p>
+    <p class="powered-by">AI 猜物支持 OpenAI-compatible 接口 · 可选使用 <a href="https://fluxtoken.ai/" target="_blank" rel="noopener" class="promo-link">FluxToken</a> 多模型网关</p>
+  </footer>
+
+  <script src="js/cnchar.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
